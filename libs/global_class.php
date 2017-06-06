@@ -37,9 +37,18 @@ abstract class GlobalClass
      * @param bool $count - кол-во элементов, которые нужно вытащить
      * @param bool $offset - смещение
      */
-    public function getAll($order = false, $up = true, $count = false, $offset = false)
+    protected function getAll($order = false, $up = true, $count = false, $offset = false)
     {
+        $ol = $this->getOL($order, $up, $count, $offset);
+        $query = "SELECT * FROM `".$this->table_name."` $ol";
+        return $this->db->select($query);
+    }
 
+    protected function getAllOnField($field, $value, $order = false, $up = true, $count = false, $offset = false)
+    {
+        $ol = $this->getOL($order, $up, $count, $offset);
+        $query = "SELECT * FROM `".$this->table_name."` WHERE `$field` = ".$this->config->sym_query." $ol";
+        return $this->db->select($query, array($value));
     }
 
     /**

@@ -21,6 +21,17 @@ class Url
         $this->amp = $amp;
     }
 
+    public function getView()
+    {
+        $view = $_SERVER['REQUEST_URI'];
+        $view = substr($view, 1);
+        if (($pos = strpos($view, '?')) !== false){
+            $view = substr($view, 0, $pos);
+        }
+        echo $view;
+        return $view;
+    }
+
     public function setAMP($amp)
     {
         $this->amp = $amp;

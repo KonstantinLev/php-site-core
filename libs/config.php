@@ -9,7 +9,7 @@
 class Config
 {
     public $sitename = 'test-site';
-    public $address = 'test-site';
+    public $address = 'http://localhost/php-site-core/';
     public $db_host = 'localhost';
     public $db_name = 'test-core';
     public $db_user = 'root';
