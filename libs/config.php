@@ -14,7 +14,7 @@ class Config
     public $db_name = 'test-core';
     public $db_user = 'root';
     public $db_pass = '';
-    //public $db_prefix = '';
+    public $db_prefix = '';
     public $sym_query = '{?}';
 
     public $admin = 'Konstantin';
