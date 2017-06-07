@@ -7,7 +7,7 @@
  * Time: 6:39
  */
 
-require_once 'config.php';
+require_once 'config/config.php';
 require_once 'email_class.php';
 
 

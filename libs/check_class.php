@@ -7,7 +7,7 @@
  * Time: 6:06
  */
 
-require_once 'config.php';
+require_once 'config/config.php';
 
 class Check
 {

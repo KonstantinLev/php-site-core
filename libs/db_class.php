@@ -7,7 +7,7 @@
  * Time: 5:25
  */
 
-require_once 'config.php';
+require_once 'config/config.php';
 
 class DB
 {
@@ -97,7 +97,7 @@ class DB
     {
         $arr = array();
         while(($row = $result_set->fetch_assoc()) != false){
-            $ar[] = $row;
+            $arr[] = $row;
         }
         return $arr;
     }

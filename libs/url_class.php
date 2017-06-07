@@ -7,7 +7,7 @@
  * Time: 5:50
  */
 
-require_once 'config.php';
+require_once 'config/config.php';
 
 class Url
 {
@@ -28,6 +28,7 @@ class Url
         if (($pos = strpos($view, '?')) !== false){
             $view = substr($view, 0, $pos);
         }
+        $view = str_replace($this->config->sitename.'/', '', $view);
         echo $view;
         return $view;
     }
@@ -65,6 +66,11 @@ class Url
     public function cart()
     {
         return $this->returnURL('cart');
+    }
+
+    public function user($id)
+    {
+        return $this->returnURL("user?id_user=$id");
     }
 
     private function returnURL($url, $index = false)

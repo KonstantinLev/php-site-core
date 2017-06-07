@@ -7,7 +7,7 @@
  * Time: 5:45
  */
 
-require_once 'config.php';
+require_once 'config/config.php';
 
 class Format
 {

@@ -5,8 +5,8 @@
  * Date: 06.06.2017
  * Time: 23:03
  */
-
-require_once 'start.php';
+mb_internal_encoding('UTF-8');
+$dir_libs = 'libs/';
 require_once $dir_libs.'url_class.php';
 
 $url = new Url();

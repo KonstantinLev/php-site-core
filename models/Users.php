@@ -7,7 +7,7 @@
  * Time: 21:15
  */
 
-require_once '../libs/global_class.php';
+require_once 'libs/global_class.php';
 
 class Users extends GlobalClass
 {
@@ -18,6 +18,12 @@ class Users extends GlobalClass
 
     public function getAllUsers()
     {
-        return $this->getAll('login', true);
+        return $this->transform($this->getAll('login'));
+    }
+
+    protected function transformElement($user)
+    {
+        $user['link'] = $this->url->user($user['id_user']);
+        return $user;
     }
 }

@@ -8,7 +8,7 @@
  */
 class Config
 {
-    public $sitename = 'test-site';
+    public $sitename = 'php-site-core';
     public $address = 'http://localhost/php-site-core/';
     public $db_host = 'localhost';
     public $db_name = 'test-core';
@@ -21,4 +21,5 @@ class Config
     public $admin_mail = 'x-stels@bk.ru';
 
     public $dir_text = 'libs/text/';
+    public $dir_views = 'views/';
 }

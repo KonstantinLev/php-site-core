@@ -7,7 +7,7 @@
  * Time: 6:48
  */
 
-require_once 'config.php';
+require_once 'config/config.php';
 require_once 'db_class.php';
 require_once 'check_class.php';
 require_once 'url_class.php';
@@ -68,6 +68,20 @@ abstract class GlobalClass
         $limit = $this->getL($count, $offset);
         return "$order $limit";
     }
+
+    protected function transform($element)
+    {
+        if (!$element) return false;
+        if (isset($element[0])){
+            for($i = 0; $i < count($element); $i++){
+                $element[$i] = $this->transformElement($element[$i]);
+            }
+            return $element;
+        } else {
+            return $this->transformElement($element);
+        }
+    }
+
 
     /**
      * Получить лимит
