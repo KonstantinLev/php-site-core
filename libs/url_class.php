@@ -29,7 +29,6 @@ class Url
             $view = substr($view, 0, $pos);
         }
         $view = str_replace($this->config->sitename.'/', '', $view);
-        echo $view;
         return $view;
     }
 

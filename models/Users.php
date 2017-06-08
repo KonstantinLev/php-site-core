@@ -26,4 +26,9 @@ class Users extends GlobalClass
         $user['link'] = $this->url->user($user['id_user']);
         return $user;
     }
+
+    public function getloginById($id)
+    {
+        return $this->transform($this->getAll('login'));
+    }
 }
