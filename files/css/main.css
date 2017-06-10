@@ -4,3 +4,6 @@ body{
 .good-block-img{
     max-width: 100%;
 }
+.sort a{
+    font-weight: bold;
+}

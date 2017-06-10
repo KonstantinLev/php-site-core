@@ -6,9 +6,10 @@
  * Date: 10.06.2017
  * Time: 13:53
  */
-require_once 'libs/global_class.php';
 
-class Categorys extends GlobalClass
+require_once 'BaseModels.php';
+
+class Category extends BaseModels
 {
     public function __construct()
     {

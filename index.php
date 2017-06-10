@@ -7,16 +7,18 @@
  */
 mb_internal_encoding('UTF-8');
 $dir_libs = 'libs/';
+$dir_controllers = 'controllers/';
 require_once $dir_libs.'url_class.php';
 
 $url = new Url();
 $view = $url->getView();
 
-$class = $view.'Content';
+$class = $view.'Controller';
 
-if(file_exists($dir_libs.$class.'_class.php')){
-    require_once $dir_libs.$class.'_class.php';
+if(file_exists($dir_controllers.$view.'Controller.php')){
+    require_once $dir_controllers.$view.'Controller.php';
     new $class;
 } else {
-    //todo 404
+    require_once $dir_controllers.'NotFoundController.php';
+    new NotFoundController();
 }

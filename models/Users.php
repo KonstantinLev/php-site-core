@@ -7,9 +7,9 @@
  * Time: 21:15
  */
 
-require_once 'libs/global_class.php';
+require_once 'BaseModels.php';
 
-class Users extends GlobalClass
+class Users extends BaseModels
 {
     public function __construct()
     {
