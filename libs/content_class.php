@@ -18,6 +18,7 @@ class Content extends Modules
     protected function getContent()
     {
         $this->template->set('msgHelloWorld', 'Привет! Я родился!');
+        $this->template->set('products', $this->products->getAllProducts());
         return 'index';
     }
 

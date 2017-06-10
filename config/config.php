@@ -22,4 +22,6 @@ class Config
 
     public $dir_text = 'libs/text/';
     public $dir_views = 'views/';
+    public $dir_img = 'files/img/';
+    public $dir_bower_asset = 'vendor/bower-asset/';
 }

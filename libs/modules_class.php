@@ -12,6 +12,7 @@ require_once 'url_class.php';
 require_once 'format_class.php';
 require_once 'template_class.php';
 require_once 'models/Users.php';
+require_once 'models/Products.php';
 
 abstract class Modules
 {
@@ -30,6 +31,9 @@ abstract class Modules
         $this->data = $this->format->xss($_REQUEST);
         $this->template = new Template($this->config->dir_views);
         $this->user = new Users();
+        $this->products = new Products();
+
+        $this->template->set('config', $this->config);
 
         $this->template->set('title', $this->title);
         $this->template->set('meta_desc', $this->meta_desc);
