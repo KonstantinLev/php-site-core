@@ -4,26 +4,25 @@
  * Created by PhpStorm.
  * User: Konstantin
  * Date: 10.06.2017
- * Time: 13:34
+ * Time: 13:53
  */
-
 require_once 'libs/global_class.php';
 
-class Products extends GlobalClass
+class Categorys extends GlobalClass
 {
     public function __construct()
     {
-        parent::__construct('products');
+        parent::__construct('categorys');
     }
 
-    public function getAllProducts()
+    public function getAllCategories()
     {
-        return $this->transform($this->getAll('date_add', false));
+        return $this->transform($this->getAll('id'));
     }
 
     protected function transformElement($data)
     {
-        $data['path_img'] = $this->config->dir_img.$data['img'];
+        $data['link'] = $this->url->linkForCategories($data['id']);
         return $data;
     }
 }

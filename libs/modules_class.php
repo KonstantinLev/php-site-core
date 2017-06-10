@@ -13,6 +13,7 @@ require_once 'format_class.php';
 require_once 'template_class.php';
 require_once 'models/Users.php';
 require_once 'models/Products.php';
+require_once 'models/Categorys.php';
 
 abstract class Modules
 {
@@ -32,6 +33,7 @@ abstract class Modules
         $this->template = new Template($this->config->dir_views);
         $this->user = new Users();
         $this->products = new Products();
+        $this->categories = new Categorys();
 
         $this->template->set('config', $this->config);
 
@@ -42,7 +44,7 @@ abstract class Modules
         $this->template->set('cart', $this->url->cart());
         $this->template->set('content', $this->getContent());
 
-        $this->template->set('user_items', $this->user->getAllUsers());
+        $this->template->set('categories', $this->categories->getAllCategories());
 
         $this->template->display('main');
     }

@@ -67,10 +67,15 @@ class Url
     {
         return $this->returnURL('cart');
     }
-
+    //TODO просто для теста
     public function user($id)
     {
         return $this->returnURL("user?id_user=$id");
+    }
+
+    public function linkForCategories($id)
+    {
+        return $this->returnURL("category?id=$id");
     }
 
     private function returnURL($url, $index = false)

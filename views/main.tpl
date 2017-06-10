@@ -30,10 +30,10 @@
         <a href="<?=$this->index?>">Главная</a>
         <a href="<?=$this->cart?>">Корзина</a>
 
-        <p>Список пользователей</p>
+        <p>Категории товаров</p>
         <ul>
-            <?php for($i=0; $i < count($this->user_items); $i++) { ?>
-            <li><a href="<?=$this->user_items[$i]['link']?>"><?=$this->user_items[$i]['login']?></a></li>
+            <?php foreach($this->categories as $cat) { ?>
+                <li><a href="<?=$cat['link']?>"><?=$cat['title']?></a></li>
             <?php } ?>
         </ul>
     </header>
