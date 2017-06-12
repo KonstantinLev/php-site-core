@@ -6,9 +6,8 @@
  * Time: 23:03
  */
 mb_internal_encoding('UTF-8');
-$dir_libs = 'libs/';
 $dir_controllers = 'controllers/';
-require_once $dir_libs.'url_class.php';
+require_once 'route/url_class.php';
 
 $url = new Url();
 $view = $url->getView();

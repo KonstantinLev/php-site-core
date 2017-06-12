@@ -10,7 +10,7 @@
 require_once 'config/config.php';
 require_once 'db_class.php';
 require_once 'check_class.php';
-require_once 'url_class.php';
+require_once 'route/url_class.php';
 
 abstract class CoreModels
 {
@@ -81,7 +81,6 @@ abstract class CoreModels
             return $this->transformElement($element);
         }
     }
-
 
     /**
      * Получить лимит

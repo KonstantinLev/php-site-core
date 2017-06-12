@@ -8,7 +8,7 @@
  */
 
 require_once 'config/config.php';
-require_once 'url_class.php';
+require_once 'CoreUrl.php';
 require_once 'format_class.php';
 require_once 'template_class.php';
 
@@ -24,12 +24,10 @@ abstract class CoreController
     {
         session_start();
         $this->config = new Config();
-        $this->url = new Url();
+        $this->url = new CoreUrl();
         $this->format = new Format();
         $this->request = $this->format->xss($_REQUEST);
         $this->template = new Template($this->config->dir_views);
-
-
     }
 
     abstract protected function getContent();

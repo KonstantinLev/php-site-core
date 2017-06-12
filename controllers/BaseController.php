@@ -8,7 +8,7 @@
  */
 
 require_once 'libs/CoreController.php';
-require_once 'libs/url_class.php';
+require_once 'route/url_class.php';
 require_once 'models/Users.php';
 require_once 'models/Product.php';
 require_once 'models/Category.php';
@@ -16,15 +16,16 @@ require_once 'models/Category.php';
 abstract class BaseController extends CoreController
 {
     protected $user;
-    protected $product;
     protected $category;
+    protected $url;
 
     public function __construct()
     {
         parent::__construct();
+
         $this->user = new Users();
-        $this->product = new Product();
         $this->category = new Category();
+        $this->url = new Url();
 
         $this->template->set('content', $this->getContent());
         $this->template->set('config', $this->config);
@@ -33,7 +34,6 @@ abstract class BaseController extends CoreController
         $this->template->set('meta_key', $this->meta_key);
         $this->template->set('index', $this->url->index());
         $this->template->set('cart', $this->url->cart());
-        $this->template->set('content', $this->getContent());
         $this->template->set('categories', $this->category->getAllCategories());
 
         $this->template->display('main');

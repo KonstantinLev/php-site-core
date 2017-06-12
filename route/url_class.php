@@ -8,7 +8,7 @@
  */
 
 require_once 'config/config.php';
-require_once 'CoreUrl.php';
+require_once 'libs/CoreUrl.php';
 
 class Url extends CoreUrl
 {
