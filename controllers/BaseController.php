@@ -8,9 +8,8 @@
  */
 
 require_once 'libs/CoreController.php';
-require_once 'route/url_class.php';
+require_once 'routes/url_class.php';
 require_once 'models/Users.php';
-require_once 'models/Product.php';
 require_once 'models/Category.php';
 
 abstract class BaseController extends CoreController

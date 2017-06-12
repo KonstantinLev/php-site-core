@@ -8,11 +8,15 @@
  */
 
 require_once 'libs/CoreModels.php';
+require_once 'routes/url_class.php';
 
 class BaseModels extends CoreModels
 {
+    protected $url;
+
     public function __construct($table_name)
     {
+        $this->url = new Url();
         parent::__construct($table_name);
     }
 }

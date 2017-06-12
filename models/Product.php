@@ -32,6 +32,11 @@ class Product extends BaseModels
         return $this->transform($this->getAll($sort, $up));
     }
 
+    public function getAllOnCategoryId($id, $sort, $up)
+    {
+        if (!$this->checkSortUp($sort, $up)) return $this->transform($this->getAllOnField('id', $id));
+        return $this->transform($this->getAllOnField('id', $id, $sort, $up));
+    }
 
 
     protected function transformElement($data)

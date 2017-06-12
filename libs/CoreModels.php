@@ -10,7 +10,7 @@
 require_once 'config/config.php';
 require_once 'db_class.php';
 require_once 'check_class.php';
-require_once 'route/url_class.php';
+require_once 'CoreUrl.php';
 
 abstract class CoreModels
 {
@@ -19,7 +19,7 @@ abstract class CoreModels
     protected $format;
     protected $config;
     protected $check;
-    protected $url;
+    private $url;
 
     public function __construct($table_name)
     {
@@ -27,8 +27,19 @@ abstract class CoreModels
         $this->format = new Format();
         $this->config = new Config();
         $this->check = new Check();
-        $this->url = new Url();
+        $this->url = new CoreUrl();
         $this->table_name = $this->config->db_prefix.$table_name;
+    }
+
+    public function get($id)
+    {
+        return $this->getOnField('id', $id);
+    }
+
+    protected function getOnField($field, $value)
+    {
+        $query = 'SELECT * FROM `'.$this->table_name."` WHERE `$field` = ".$this->config->sym_query;
+        return $this->db->selectRow($query, array($value));
     }
 
     /**

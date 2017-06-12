@@ -8,6 +8,7 @@
  */
 
 require_once 'BaseController.php';
+require_once 'models/Product.php';
 
 class Controller extends BaseController
 {

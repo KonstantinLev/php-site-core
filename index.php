@@ -7,7 +7,7 @@
  */
 mb_internal_encoding('UTF-8');
 $dir_controllers = 'controllers/';
-require_once 'route/url_class.php';
+require_once 'routes/url_class.php';
 
 $url = new Url();
 $view = $url->getView();
