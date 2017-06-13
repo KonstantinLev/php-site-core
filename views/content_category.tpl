@@ -7,6 +7,10 @@
             <section class="s-products">
 
                     <div class="row">
+                        <ol class="breadcrumb">
+                            <li><a href="<?=$this->index?>">Главная</a></li>
+                            <li class="active"><?=$this->categoryInfo['title']?></li>
+                        </ol>
                         <h2>Товары</h2>
                         <?php if($this->products) { ?>
                             <p class="sort">
@@ -22,6 +26,7 @@
                                         фото товара:
                                         <img class="good-block-img" src="<?=$product['path_img']?>" alt="доделать">
                                     </p>
+                                    <a href="<?=$product['link']?>">Подробнее</a>
                                 </div>
                             </div>
                             <?php } ?>

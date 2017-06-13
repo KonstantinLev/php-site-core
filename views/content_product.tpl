@@ -5,6 +5,11 @@
         </div>
         <div class="col-md-9">
             <section class="s-product">
+                <ol class="breadcrumb">
+                    <li><a href="<?=$this->index?>">Главная</a></li>
+                    <li><a href="<?=$this->linkCategory?>"><?=$this->product['category']?></a></li>
+                    <li class="active"><?=$this->product['title']?></li>
+                </ol>
                 <div class="good-block-current">
                     <h2><?=$this->product['title']?></h2>
                     <p>Артикул: <?=$this->product['articul']?></p>

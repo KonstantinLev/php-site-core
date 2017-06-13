@@ -28,6 +28,7 @@ class ProductController extends BaseController
         $this->meta_desc = 'Описание и покупка спиннера '.$product_info['title'];
         $this->meta_key = mb_strtolower('описание, спиннер '.$product_info['title'].', купить спиннер '.$product_info['title']);
 
+        $this->template->set('linkCategory', $this->url->linkForCategories($product_info['id']));
         $this->template->set('product', $product_info);
 
         return 'product';
