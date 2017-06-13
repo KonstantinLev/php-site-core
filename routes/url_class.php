@@ -33,6 +33,11 @@ class Url extends CoreUrl
         return $this->returnURL("category?id=$id");
     }
 
+    public function linkForProduct($id)
+    {
+        return $this->returnURL("product?id=$id");
+    }
+
     public function sortPriceUp()
     {
         return $this->sortOnField('price', 1);

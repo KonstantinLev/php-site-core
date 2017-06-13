@@ -30,7 +30,7 @@ class Controller extends BaseController
         $up = $this->getRequest('up');
         $this->template->set('msgHelloWorld', 'Привет! Я родился!');
         //$this->template->set('products', $this->product->getAllProducts());
-        $this->template->set('products', $this->product->getAllSortProducts($sort, $up));
+        $this->template->set('products', $this->product->getAllSortProducts(['is_available' => 1],$sort, $up));
         return 'index';
     }
 }

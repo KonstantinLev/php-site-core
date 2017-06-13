@@ -31,11 +31,7 @@
         <a href="<?=$this->cart?>">Корзина</a>
 
         <p>Категории товаров</p>
-        <ul>
-            <?php foreach($this->categories as $cat) { ?>
-                <li><a href="<?=$cat['link']?>"><?=$cat['title']?></a></li>
-            <?php } ?>
-        </ul>
+        <?php include ('left_menu.tpl'); ?>
     </header>
 
     <div class="site-content">

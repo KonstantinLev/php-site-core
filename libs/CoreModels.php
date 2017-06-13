@@ -33,6 +33,7 @@ abstract class CoreModels
 
     public function get($id)
     {
+        if (!$this->check->id($id)) return false;
         return $this->getOnField('id', $id);
     }
 
@@ -55,11 +56,21 @@ abstract class CoreModels
         return $this->db->select($query);
     }
 
-    protected function getAllOnField($field, $value, $order = false, $up = true, $count = false, $offset = false)
+    protected function getAllOnField($v_where, $order = false, $up = true, $count = false, $offset = false)
     {
+        $where = ' WHERE ';
+        $values = array();
+        $index = 0;
+        foreach ($v_where as $key => $val){
+            $where .= "`".$key."` = ".$this->config->sym_query;
+            if (++$index != count($v_where)){
+                $where .= " AND ";
+            }
+            $values[] = $val;
+        }
         $ol = $this->getOL($order, $up, $count, $offset);
-        $query = "SELECT * FROM `".$this->table_name."` WHERE `$field` = ".$this->config->sym_query." $ol";
-        return $this->db->select($query, array($value));
+        $query = "SELECT * FROM `".$this->table_name."`".$where." $ol";
+        return $this->db->select($query, $values);
     }
 
     /**
@@ -78,19 +89,6 @@ abstract class CoreModels
         }
         $limit = $this->getL($count, $offset);
         return "$order $limit";
-    }
-
-    protected function transform($element)
-    {
-        if (!$element) return false;
-        if (isset($element[0])){
-            for($i = 0; $i < count($element); $i++){
-                $element[$i] = $this->transformElement($element[$i]);
-            }
-            return $element;
-        } else {
-            return $this->transformElement($element);
-        }
     }
 
     /**
@@ -112,5 +110,23 @@ abstract class CoreModels
             }
         }
         return $limit;
+    }
+
+    public function getTableName()
+    {
+        return $this->table_name;
+    }
+
+    protected function transform($element)
+    {
+        if (!$element) return false;
+        if (isset($element[0])){
+            for($i = 0; $i < count($element); $i++){
+                $element[$i] = $this->transformElement($element[$i]);
+            }
+            return $element;
+        } else {
+            return $this->transformElement($element);
+        }
     }
 }

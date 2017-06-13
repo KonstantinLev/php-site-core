@@ -26,23 +26,41 @@ class Product extends BaseModels
         return $this->transform($this->getAll('date_add', false, $count));
     }
 
-    public function getAllSortProducts($sort, $up)
+    public function getAllSortProducts($where, $sort, $up)
     {
-        if (!$this->checkSortUp($sort, $up)) return $this->getAllProducts();
-        return $this->transform($this->getAll($sort, $up));
+        if (!$this->checkSortUp($sort, $up)) return $this->transform($this->getAllOnField($where));
+        return $this->transform($this->getAllOnField($where, $sort, $up));
     }
 
-    public function getAllOnCategoryId($id, $sort, $up)
+    public function getAllOnCategoryId($where, $sort, $up)
     {
-        if (!$this->checkSortUp($sort, $up)) return $this->transform($this->getAllOnField('id', $id));
-        return $this->transform($this->getAllOnField('id', $id, $sort, $up));
+        if (!$this->checkSortUp($sort, $up)) return $this->transform($this->getAllOnField($where));
+        return $this->transform($this->getAllOnField($where, $sort, $up));
     }
-
 
     protected function transformElement($data)
     {
         $data['path_img'] = $this->config->dir_img.$data['img'];
+        $data['link'] = 'product?id='.$data['id'];
+        $data['short_desc'] = str_replace("\n", '<br>', $data['short_desc']);
         return $data;
+    }
+
+    public function get($id, $categoryTable)
+    {
+        if (!$this->check->id($id)) return false;
+        $query = "SELECT `".$this->table_name."`.`id`,
+        `".$this->table_name."`.`fid_category`,
+        `".$this->table_name."`.`articul`,
+        `".$this->table_name."`.`title`,
+        `".$this->table_name."`.`short_desc`,
+        `".$this->table_name."`.`price`,
+        `".$this->table_name."`.`img`,
+        `".$categoryTable."`.`title` as `category`
+        FROM `".$this->table_name."`
+        LEFT JOIN `".$categoryTable."` ON `".$categoryTable."`.`id` = `".$this->table_name."`.`fid_category`
+        WHERE `".$this->table_name."`.`id` = ".$this->config->sym_query;
+        return $this->transform($this->db->selectRow($query, array($id)));
     }
 
     private function checkSortUp($sort, $up)

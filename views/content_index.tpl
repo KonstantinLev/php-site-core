@@ -38,6 +38,7 @@
                             фото товара:
                             <img class="good-block-img" src="<?=$product['path_img']?>" alt="доделать">
                         </p>
+                        <a href="<?=$product['link']?>">Подробнее</a>
                     </div>
                 </div>
             <?php } ?>

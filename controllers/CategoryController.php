@@ -22,16 +22,17 @@ class CategoryController extends BaseController
 
     protected function getContent()
     {
+        $category_info = $this->category->get($this->getRequest('id'));
+        if(!$category_info) return $this->notFound();
         $this->linkSort();
         $sort = $this->getRequest('sort');
         $up = $this->getRequest('up');
 
-        $category_info = $this->category->get($this->getRequest('id'));
         $this->title = $category_info['title'];
         $this->meta_desc = 'Спиннеры из раздела '.$category_info['title'];
         $this->meta_key = mb_strtolower('список спиннеров, спиннеры, спиннеры из категории '.$category_info['title']);
 
-        $this->template->set('products', $this->product->getAllOnCategoryId($category_info['id'], $sort, $up));
+        $this->template->set('products', $this->product->getAllOnCategoryId(['id' => $category_info['id'], 'is_available' => 1], $sort, $up));
 
         return 'category';
     }
