@@ -80,7 +80,8 @@ class Product extends BaseModels
     {
         $data['path_img'] = $this->config->dir_img.$data['img'];
         $data['link'] = 'product?id='.$data['id'];
-        $data['link_cart'] = 'functions.php?func=add_cart&id='.$data['id'];
+        $data['link_cart'] = 'functions.php?func=add_cart&id='.$data['id']; //TODO реализовать в классе URL
+        $data['link_del'] = 'functions.php?func=delete_cart&id='.$data['id'];
         $data['short_desc'] = str_replace("\n", '<br>', $data['short_desc']);
         return $data;
     }
