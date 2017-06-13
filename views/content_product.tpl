@@ -20,8 +20,30 @@
                         фото товара:
                         <img class="good-block-img" src="<?=$this->product['path_img']?>" alt="<?=$this->product['title']?>">
                     </p>
+                    <a href="<?=$product['link_cart']?>">В корзину</a>
+                </div>
+                <div class="other-goods">
+                    <h3>С этим товаром также заказывают: </h3>
+                    <div class="row">
+                        <?php foreach($this->products as $product) { ?>
+                            <div class="col-md-4">
+                                <div class="good-block">
+                                    <p>Название товара: <?=$product['title']?></p>
+                                    <p>Артикул: <?=$product['articul']?></p>
+                                    <p>Цена: <?=$product['price']?></p>
+                                    <p>
+                                        фото товара:
+                                        <img class="good-block-img" src="<?=$product['path_img']?>" alt="доделать">
+                                    </p>
+                                    <a href="<?=$product['link']?>">Подробнее</a>
+                                    <a href="<?=$product['link_cart']?>">В корзину</a>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    </div>
                 </div>
             </section>
+
         </div>
     </div>
 </div>

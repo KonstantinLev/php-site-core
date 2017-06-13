@@ -38,10 +38,18 @@ class Product extends BaseModels
         return $this->transform($this->getAllOnField($where, $sort, $up));
     }
 
+    public function getOthers($productInfo)
+    {
+        //$l = $this->getL($count, 0);
+        $query = "SELECT * FROM `".$this->table_name."` WHERE `fid_category` = ".$this->config->sym_query." ORDER BY RAND()";
+        return $this->transform($this->db->select($query, [$productInfo['fid_category']]));
+    }
+
     protected function transformElement($data)
     {
         $data['path_img'] = $this->config->dir_img.$data['img'];
         $data['link'] = 'product?id='.$data['id'];
+        $data['link_cart'] = 'functions.php?func=add_cart&id='.$data['id'];
         $data['short_desc'] = str_replace("\n", '<br>', $data['short_desc']);
         return $data;
     }

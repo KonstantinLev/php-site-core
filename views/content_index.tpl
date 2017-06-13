@@ -39,6 +39,7 @@
                             <img class="good-block-img" src="<?=$product['path_img']?>" alt="доделать">
                         </p>
                         <a href="<?=$product['link']?>">Подробнее</a>
+                        <a href="<?=$product['link_cart']?>">В корзину</a>
                     </div>
                 </div>
             <?php } ?>

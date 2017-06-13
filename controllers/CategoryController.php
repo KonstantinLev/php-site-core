@@ -33,7 +33,7 @@ class CategoryController extends BaseController
         $this->meta_key = mb_strtolower('список спиннеров, спиннеры, спиннеры из категории '.$category_info['title']);
 
         $this->template->set('categoryInfo', $category_info);
-        $this->template->set('products', $this->product->getAllOnCategoryId(['id' => $category_info['id'], 'is_available' => 1], $sort, $up));
+        $this->template->set('products', $this->product->getAllOnCategoryId(['fid_category' => $category_info['id'], 'is_available' => 1], $sort, $up));
 
         return 'category';
     }
