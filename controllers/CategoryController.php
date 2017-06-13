@@ -12,14 +12,6 @@ require_once 'models/Product.php';
 
 class CategoryController extends BaseController
 {
-    protected $product;
-
-    public function __construct()
-    {
-        $this->product = new Product();
-        parent::__construct();
-    }
-
     protected function getContent()
     {
         $category_info = $this->category->get($this->getRequest('id'));

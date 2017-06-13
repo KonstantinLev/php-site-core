@@ -17,6 +17,7 @@ abstract class BaseController extends CoreController
     protected $user;
     protected $category;
     protected $url;
+    protected $product;
 
     public function __construct()
     {
@@ -25,6 +26,9 @@ abstract class BaseController extends CoreController
         $this->user = new Users();
         $this->category = new Category();
         $this->url = new Url();
+        $this->product = new Product();
+
+        $this->setInfoCart();
 
         $this->template->set('content', $this->getContent());
         $this->template->set('config', $this->config);
@@ -33,9 +37,18 @@ abstract class BaseController extends CoreController
         $this->template->set('meta_key', $this->meta_key);
         $this->template->set('index', $this->url->index());
         $this->template->set('cart', $this->url->cart());
+
         $this->template->set('categories', $this->category->getAllCategories());
 
         $this->template->display('main');
+    }
+
+    protected function setInfoCart()
+    {
+        $ids = explode(',', $_SESSION['cart']);
+        $summ = $this->product->getPriceOnIds($ids);
+        $this->template->set('cart_count', count($ids));
+        $this->template->set('cart_sum', $summ);
     }
 
     protected function linkSort()

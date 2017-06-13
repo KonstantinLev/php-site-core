@@ -28,7 +28,7 @@
 
     <header class="site-header">
         <a href="<?=$this->index?>">Главная</a>
-        <a href="<?=$this->cart?>">Корзина</a> (В корзине <b></b> товаров на сумму <b></b> руб.)
+        <a href="<?=$this->cart?>">Корзина</a> (В корзине <b><?=$this->cart_count?></b> товаров на сумму <b><?=$this->cart_sum?></b> руб.)
 
         <p>Категории товаров</p>
         <?php include ('left_menu.tpl'); ?>

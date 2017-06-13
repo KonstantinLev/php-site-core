@@ -117,6 +117,18 @@ abstract class CoreModels
         return $this->table_name;
     }
 
+    public function existsID($id)
+    {
+        if (!$this->check->id($id)) return false;
+        return $this->isExistsFV('id', $id);
+    }
+
+    protected function isExistsFV($field, $value)
+    {
+        $result = $this->getAllOnField(array($field => $value));
+        return count($result) != 0;
+    }
+
     protected function transform($element)
     {
         if (!$element) return false;

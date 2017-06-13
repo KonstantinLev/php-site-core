@@ -20,7 +20,7 @@
                         фото товара:
                         <img class="good-block-img" src="<?=$this->product['path_img']?>" alt="<?=$this->product['title']?>">
                     </p>
-                    <a href="<?=$product['link_cart']?>">В корзину</a>
+                    <a href="<?=$this->product['link_cart']?>">В корзину</a>
                 </div>
                 <div class="other-goods">
                     <h3>С этим товаром также заказывают: </h3>

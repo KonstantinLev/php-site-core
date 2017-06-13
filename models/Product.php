@@ -45,6 +45,37 @@ class Product extends BaseModels
         return $this->transform($this->db->select($query, [$productInfo['fid_category']]));
     }
 
+    public function getAllOnIds($ids)
+    {
+        $queryIds = '';
+        $params = [];
+        foreach ($ids as $val)
+        {
+            $queryIds .= $this->config->sym_query.',';
+            $params[] = $val;
+        }
+        $queryIds = substr($queryIds,0 ,-1);
+        $query = "SELECT * FROM `".$this->table_name."` WHERE `id` IN ($queryIds)";
+        return $this->transform($this->db->select($query, $params));
+
+
+    }
+
+    public function getPriceOnIds($ids)
+    {
+        $products = $this->getAllOnIds($ids);
+        $result = [];
+        foreach ($products as $product) {
+            $result[$product['id']] = $product['price'];
+        }
+        $summ = 0;
+        foreach ($ids as $val){
+            $summ += $result[$val];
+        }
+        return $summ;
+
+    }
+
     protected function transformElement($data)
     {
         $data['path_img'] = $this->config->dir_img.$data['img'];
