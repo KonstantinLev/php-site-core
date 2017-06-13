@@ -26,14 +26,39 @@ class Manage
 
     }
 
-    public function addCart()
+    public function addCart($id = false)
     {
-        $id = $this->request['id'];
+        if (!$id) $id = $this->request['id'];
         if (!$this->product->existsID($id)) return false;
         if ($_SESSION['cart']){
             $_SESSION['cart'] .= ','.$id;
         } else {
             $_SESSION['cart'] = $id;
         }
+    }
+
+    public function deleteCart()
+    {
+        $id = $this->request['id'];
+        $ids = explode(',', $_SESSION['cart']);
+        $_SESSION['cart'] = '';
+        foreach($ids as $val){
+            if($val != $id) $this->addCart($val);
+        }
+    }
+
+    public function updateCart()
+    {
+        //print_r($this->request);
+        $_SESSION['cart'] = '';
+        foreach ($this->request as $key => $val){
+            if (strpos($key, 'count_') !== false){
+                $id = substr($key, strlen('count_'));
+                for($i = 0; $i < $val; $i++){
+                    $this->addCart($id);
+                }
+            }
+        }
+        $_SESSION['discount'] = $this->request['discount'];
     }
 }

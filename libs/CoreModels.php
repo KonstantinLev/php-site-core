@@ -37,6 +37,22 @@ abstract class CoreModels
         return $this->getOnField('id', $id);
     }
 
+    protected function getField($v_where, $returnValue)
+    {
+        $where = ' WHERE ';
+        $values = array();
+        $index = 0;
+        foreach ($v_where as $key => $val){
+            $where .= "`".$key."` = ".$this->config->sym_query;
+            if (++$index != count($v_where)){
+                $where .= " AND ";
+            }
+            $values[] = $val;
+        }
+        $query = "SELECT `$returnValue` FROM `".$this->table_name."`".$where;
+        return $this->db->selectCell($query, $values);
+    }
+
     protected function getOnField($field, $value)
     {
         $query = 'SELECT * FROM `'.$this->table_name."` WHERE `$field` = ".$this->config->sym_query;

@@ -7,3 +7,7 @@ body{
 .sort a{
     font-weight: bold;
 }
+.right{
+    display: inline-block;
+    float: right;
+}

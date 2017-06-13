@@ -10,6 +10,12 @@ switch ($func){
     case 'add_cart':
         $manage->addCart();
         break;
+    case 'delete_cart':
+        $manage->deleteCart();
+        break;
+    case 'cart':
+        $manage->updateCart();
+        break;
     default:
         exit;
 }

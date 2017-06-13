@@ -21,7 +21,6 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="#1a1a1a">
 
     <link rel="stylesheet" href="<?=$this->config->dir_bower_asset.'bootstrap-3.1.1/dist/css/bootstrap.css'?>">
-    <link rel="stylesheet" href="files/css/main.css">
     <title><?=$this->title?></title>
 </head>
 <body>
@@ -42,6 +41,7 @@
         <h2>Это мать его ФУТЕР!</h2>
     </footer>
 
+    <link rel="stylesheet" href="files/css/main.css">
     <script src="<?=$this->config->dir_bower_asset.'jquery-2.0.3/jquery.min.js'?>"></script>
     <script src="<?=$this->config->dir_bower_asset.'bootstrap-3.1.1/dist/js/bootstrap.js'?>"></script>
 </body>

@@ -46,9 +46,16 @@ abstract class BaseController extends CoreController
 
     protected function setInfoCart()
     {
-        $ids = explode(',', $_SESSION['cart']);
-        $summ = $this->product->getPriceOnIds($ids);
-        $this->template->set('cart_count', count($ids));
+        //unset($_SESSION['cart']);
+        $countIds = 0;
+        $summ = 0;
+        if($_SESSION['cart']){
+            $ids = explode(',', $_SESSION['cart']);
+            $countIds = count($ids);
+            $summ = $this->product->getPriceOnIds($ids);
+        }
+
+        $this->template->set('cart_count', $countIds);
         $this->template->set('cart_sum', $summ);
     }
 

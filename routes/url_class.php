@@ -22,6 +22,17 @@ class Url extends CoreUrl
     {
         return $this->returnURL('cart');
     }
+
+    public function actionForCart()
+    {
+        return $this->returnURL('functions.php');
+    }
+
+    public function linkOrder()
+    {
+        return $this->returnURL('order');
+    }
+
     //TODO просто для теста
     public function user($id)
     {
@@ -57,6 +68,7 @@ class Url extends CoreUrl
     {
         return $this->sortOnField('title', 0);
     }
+
 
 
     private function sortOnField($field, $up)

@@ -8,9 +8,18 @@
 
 require_once 'BaseController.php';
 require_once 'models/Product.php';
+require_once 'models/Discount.php';
 
 class CartController extends BaseController
 {
+    protected $discount;
+
+    public function __construct()
+    {
+        $this->discount = new Discount();
+        parent::__construct();
+    }
+
     protected function getContent()
     {
         $this->title = 'Корзина';
@@ -29,6 +38,7 @@ class CartController extends BaseController
             $idsUnique = array_unique($ids);
             $i = 0;
             foreach ($idsUnique as $val){
+                $cart[$i]['id'] = $result[$val]['id'];
                 $cart[$i]['title'] = $result[$val]['title'];
                 $cart[$i]['articul'] = $result[$val]['articul'];
                 $cart[$i]['price'] = $result[$val]['price'];
@@ -38,10 +48,21 @@ class CartController extends BaseController
                 $summ += $cart[$i]['summ'];
                 $i++;
             }
+            $valDiscount = $this->discount->getValueOnCode($_SESSION['discount']);
+            if($valDiscount){
+                $summ *= (1 - $valDiscount);
+                $relDiscount = $summ * $valDiscount;
+                $absDiscount = ($valDiscount * 100).'%';
+                $this->template->set('discount', $_SESSION['discount']);
+                $this->template->set('relDiscount', $relDiscount);
+                $this->template->set('absDiscount', $absDiscount);
+            }
+
         }
-        $a = $cart;
         $this->template->set('summ', $summ);
         $this->template->set('cartItems', $cart);
+        $this->template->set('link_order', $this->url->linkOrder());
+        $this->template->set('action', $this->url->actionForCart());
 
 
         return 'cart';
