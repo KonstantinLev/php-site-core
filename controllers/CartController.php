@@ -7,7 +7,6 @@
  */
 
 require_once 'BaseController.php';
-require_once 'models/Product.php';
 require_once 'models/Discount.php';
 
 class CartController extends BaseController
@@ -50,8 +49,9 @@ class CartController extends BaseController
             }
             $valDiscount = $this->discount->getValueOnCode($_SESSION['discount']);
             if($valDiscount){
+                $summOld = $summ;
                 $summ *= (1 - $valDiscount);
-                $relDiscount = $summ * $valDiscount;
+                $relDiscount = $summOld * $valDiscount;
                 $absDiscount = ($valDiscount * 100).'%';
                 $this->template->set('discount', $_SESSION['discount']);
                 $this->template->set('relDiscount', $relDiscount);

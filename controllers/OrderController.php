@@ -7,10 +7,9 @@
  */
 
 require_once 'BaseController.php';
-require_once 'models/Product.php';
 require_once 'models/Discount.php';
 
-class CartController extends BaseController
+class OrderController extends BaseController
 {
     protected $discount;
 
@@ -24,7 +23,7 @@ class CartController extends BaseController
     {
         $this->title = 'Оформление заказа';
         $this->meta_desc = 'Оформление заказа на покупку спиннера';
-        $this->meta_key = mb_strtolower('заказ, оформление заказа, оформление заказа спиннер');
+        $this->meta_key = 'заказ, оформление заказа, оформление заказа спиннер';
 
         return 'order';
     }

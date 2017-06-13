@@ -27,13 +27,14 @@ abstract class CoreController
         $this->url = new CoreUrl();
         $this->format = new Format();
         $this->request = $this->format->xss($_REQUEST);
-        $this->template = new Template($this->config->dir_views);
     }
 
     abstract protected function getContent();
 
-    protected function getRequest($name)
+    protected function getRequest($name = false)
     {
+        if(!$name) return $this->request;
+        if(!$this->request[$name]) return false;
         return $this->request[$name];
     }
 

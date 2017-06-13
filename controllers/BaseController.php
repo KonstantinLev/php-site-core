@@ -28,6 +28,7 @@ abstract class BaseController extends CoreController
         $this->category = new Category();
         $this->url = new Url();
         $this->product = new Product();
+        $this->template = new Template($this->config->dir_views);
 
         $this->setInfoCart();
 
