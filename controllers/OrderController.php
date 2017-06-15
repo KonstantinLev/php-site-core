@@ -25,6 +25,12 @@ class OrderController extends BaseController
         $this->meta_desc = 'Оформление заказа на покупку спиннера';
         $this->meta_key = 'заказ, оформление заказа, оформление заказа спиннер';
 
+        $this->template->set('name', $_SESSION['name']);
+        $this->template->set('phone', $_SESSION['phone']);
+        $this->template->set('email', $_SESSION['email']);
+        $this->template->set('address', $_SESSION['address']);
+        $this->template->set('notice', $_SESSION['notice']);
+
         return 'order';
     }
 

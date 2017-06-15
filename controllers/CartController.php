@@ -62,7 +62,6 @@ class CartController extends BaseController
         $this->template->set('summ', $summ);
         $this->template->set('cartItems', $cart);
         $this->template->set('link_order', $this->url->linkOrder());
-        $this->template->set('action', $this->url->actionForCart());
 
 
         return 'cart';

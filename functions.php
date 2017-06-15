@@ -16,6 +16,9 @@ switch ($func){
     case 'cart':
         $manage->updateCart();
         break;
+    case 'order':
+        $manage->addOrder();
+        break;
     default:
         exit;
 }

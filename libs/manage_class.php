@@ -10,6 +10,8 @@
 require_once 'config/config.php';
 require_once 'format_class.php';
 require_once 'models/Product.php';
+require_once 'models/Discount.php';
+require_once 'models/Order.php';
 
 class Manage
 {
@@ -22,8 +24,17 @@ class Manage
         $this->config = new Config();
         $this->format = new Format();
         $this->product = new Product();
+        $this->discount = new Discount();
+        $this->order = new Order();
         $this->request = $this->format->xss($_REQUEST);
+        $this->saveData();
+    }
 
+    private function saveData()
+    {
+        foreach($this->request as $key => $val){
+            $_SESSION[$key] = $val;
+        }
     }
 
     public function addCart($id = false)
@@ -60,5 +71,31 @@ class Manage
             }
         }
         $_SESSION['discount'] = $this->request['discount'];
+    }
+
+    public function addOrder()
+    {
+        $tmpData = [];
+        $tmpData['is_delivery'] = $this->request['is_delivery'];
+        $tmpData['product_ids'] = $_SESSION['cart'];
+        $tmpData['name'] = $this->request['name'];
+        $tmpData['phone'] = $this->request['phone'];
+        $tmpData['email'] = $this->request['email'];
+        $tmpData['address'] = $this->request['address'];
+        $tmpData['notice'] = $this->request['notice'];
+        $tmpData['price'] = $this->getPrice();
+        if($this->order->add($tmpData)){
+            return true;
+        }
+        return false;
+    }
+
+    private function getPrice()
+    {
+        $ids = explode(',', $_SESSION['cart']);
+        $summ = $this->product->getPriceOnIds($ids);
+        $discount = $this->discount->getValueOnCode($_SESSION['discount']);
+        if($discount) $summ *= (1 - $discount);
+        return $summ;
     }
 }

@@ -37,6 +37,36 @@ abstract class CoreModels
         return $this->getOnField('id', $id);
     }
 
+    public function add($data)
+    {
+        if (!$this->check($data)) return false;
+        $query = "INSERT INTO `".$this->table_name."` (";
+        foreach ($data as $field => $value){
+            $query .= "`$field`,";
+        }
+        $query = substr($query, 0, -1);
+        $query .= ") VALUES (";
+        foreach($data as $value){
+            $query .= $this->config->sym_query.",";
+        }
+        $query = substr($query, 0, -1);
+        $query .= ")";
+        return $this->db->execute($query, array_values($data));
+    }
+
+    private function check($data)
+    {
+        $result = $this->checkData($data);
+        if ($result === true) return true;
+        return false;
+    }
+
+    protected function checkData($data)
+    {
+        return false;
+    }
+
+
     protected function getField($v_where, $returnValue)
     {
         $where = ' WHERE ';

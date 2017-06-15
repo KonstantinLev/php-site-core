@@ -24,4 +24,8 @@ class Config
     public $dir_views = 'views/';
     public $dir_img = 'files/img/';
     public $dir_bower_asset = 'vendor/bower-asset/';
+
+    public $max_name = 255;
+    public $max_title = 255;
+    public $max_text = 66535;
 }

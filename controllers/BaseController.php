@@ -19,6 +19,7 @@ abstract class BaseController extends CoreController
     protected $category;
     protected $url;
     protected $product;
+    protected $template;
 
     public function __construct()
     {
@@ -39,6 +40,7 @@ abstract class BaseController extends CoreController
         $this->template->set('meta_key', $this->meta_key);
         $this->template->set('index', $this->url->index());
         $this->template->set('cart', $this->url->cart());
+        $this->template->set('action', $this->url->actionForm());
 
         $this->template->set('categories', $this->category->getAllCategories());
 

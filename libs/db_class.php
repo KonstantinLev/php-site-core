@@ -88,6 +88,18 @@ class DB
         }
     }
 
+
+    public function execute($query, $params = false)
+    {
+        $result = $this->mysqli->query($this->getQuery($query, $params));
+        if ($result) {
+            if ($this->mysqli->insert_id === 0) return true;
+            else return $this->mysqli->insert_id;
+        } else {
+            return false;
+        }
+    }
+
     /**
      * Преобразование данных в массив
      * @param $result_set
