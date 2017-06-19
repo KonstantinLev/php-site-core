@@ -11,6 +11,7 @@ require_once 'config/config.php';
 require_once 'db_class.php';
 require_once 'check_class.php';
 require_once 'CoreUrl.php';
+require_once 'systemmessage_class.php';
 
 abstract class CoreModels
 {
@@ -58,7 +59,8 @@ abstract class CoreModels
     {
         $result = $this->checkData($data);
         if ($result === true) return true;
-        return false;
+        $sm = new SystemMessage();
+        return $sm->message($result);
     }
 
     protected function checkData($data)

@@ -5,6 +5,7 @@ require_once 'routes/url_class.php';
 
 $url = new Url();
 $manage = new Manage();
+$link = ($_SERVER['HTTP_REFERER'] != '') ? $_SERVER['HTTP_REFERER'] : $url->index();
 $func = $_REQUEST['func'];
 switch ($func){
     case 'add_cart':
@@ -17,11 +18,11 @@ switch ($func){
         $manage->updateCart();
         break;
     case 'order':
-        $manage->addOrder();
+        $result = $manage->addOrder();
+        if ($result) $link = $url->message();
         break;
     default:
         exit;
 }
-$link = ($_SERVER['HTTP_REFERER'] != '') ? $_SERVER['HTTP_REFERER'] : $url->index();
 header('Location: '.$link);
 exit;

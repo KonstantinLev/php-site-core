@@ -12,6 +12,7 @@ require_once 'format_class.php';
 require_once 'models/Product.php';
 require_once 'models/Discount.php';
 require_once 'models/Order.php';
+require_once 'systemmessage_class.php';
 
 class Manage
 {
@@ -26,6 +27,7 @@ class Manage
         $this->product = new Product();
         $this->discount = new Discount();
         $this->order = new Order();
+        $this->sm = new SystemMessage();
         $this->request = $this->format->xss($_REQUEST);
         $this->saveData();
     }
@@ -85,7 +87,7 @@ class Manage
         $tmpData['notice'] = $this->request['notice'];
         $tmpData['price'] = $this->getPrice();
         if($this->order->add($tmpData)){
-            return true;
+            return $this->sm->pageMessage('ADD_ORDER');
         }
         return false;
     }

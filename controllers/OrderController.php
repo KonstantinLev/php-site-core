@@ -30,6 +30,7 @@ class OrderController extends BaseController
         $this->template->set('email', $_SESSION['email']);
         $this->template->set('address', $_SESSION['address']);
         $this->template->set('notice', $_SESSION['notice']);
+        $this->template->set('message', $this->message());
 
         return 'order';
     }

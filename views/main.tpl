@@ -33,6 +33,16 @@
         <?php include ('left_menu.tpl'); ?>
     </header>
 
+    <div class="message">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <?php include "message.tpl"; ?>
+                </div>
+            </div>
+        </div>
+
+    </div>
     <div class="site-content">
         <?php include "content_".$this->content.".tpl";?>
     </div>

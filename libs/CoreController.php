@@ -11,6 +11,7 @@ require_once 'config/config.php';
 require_once 'CoreUrl.php';
 require_once 'format_class.php';
 require_once 'template_class.php';
+require_once 'message_class.php';
 
 abstract class CoreController
 {
@@ -19,6 +20,7 @@ abstract class CoreController
     protected $url;
     protected $format;
     protected $template;
+    protected $message;
 
     public function __construct()
     {
@@ -27,6 +29,7 @@ abstract class CoreController
         $this->url = new CoreUrl();
         $this->format = new Format();
         $this->request = $this->format->xss($_REQUEST);
+        $this->message = new Message();
     }
 
     abstract protected function getContent();
@@ -41,6 +44,14 @@ abstract class CoreController
     protected function notFound()
     {
         $this->redirect($this->url->notFound());
+    }
+
+    protected function message()
+    {
+        if (!$_SESSION['message']) return '';
+        $text = $this->message->get($_SESSION['message']);
+        unset($_SESSION['message']);
+        return $text;
     }
 
     protected function redirect($link)

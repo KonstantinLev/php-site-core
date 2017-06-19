@@ -23,6 +23,11 @@ class Url extends CoreUrl
         return $this->returnURL('cart');
     }
 
+    public function message()
+    {
+        return $this->returnURL('message');
+    }
+
     public function actionForm()
     {
         return $this->returnURL('functions.php');
