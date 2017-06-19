@@ -31,6 +31,12 @@
 
         <p>Категории товаров</p>
         <?php include ('left_menu.tpl'); ?>
+
+        <p>Поиск</p>
+        <form method="get" action="search">
+            <input type="text" name="q">
+            <input type="submit" value="Найти">
+        </form>
     </header>
 
     <div class="message">
