@@ -13,6 +13,7 @@ require_once 'models/Product.php';
 require_once 'models/Discount.php';
 require_once 'models/Order.php';
 require_once 'systemmessage_class.php';
+require_once 'mail_class.php';
 
 class Manage
 {
@@ -87,6 +88,17 @@ class Manage
         $tmpData['notice'] = $this->request['notice'];
         $tmpData['price'] = $this->getPrice();
         if($this->order->add($tmpData)){
+            $mail = new Mail();
+            $sendData = [];
+            $sendData['order'] = $this->order->getOrderForMail($this->product);
+            $sendData['name'] = $tmpData['name'];
+            $sendData['phone'] = $tmpData['phone'];
+            $sendData['email'] = $tmpData['email'];
+            $sendData['address'] = $tmpData['address'];
+            $sendData['notice'] = $tmpData['notice'];
+            $sendData['price'] = $tmpData['price'];
+            $to = $tmpData['email'];
+            $mail->send($to, $sendData, 'ORDER');
             return $this->sm->pageMessage('ADD_ORDER');
         }
         return false;

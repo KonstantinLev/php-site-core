@@ -31,4 +31,25 @@ class Order extends BaseModels
         //if(!$this->check->ts($data['date_order'])) return 'UNKNOWN_ERROR';
         return true;
     }
+
+    public function getOrderForMail($product)
+    {
+        $ids = explode(',', $_SESSION['cart']);
+        $products = $product->getAllOnIds($ids);
+        $result = [];
+        for ($i = 0; $i < count($products); $i++) {
+            $result[$products[$i]['id']] = $products[$i]['title'];
+        }
+        $products = [];
+        for ($i = 0; $i < count($ids); $i++) {
+            $products[$ids[$i]][0]++;
+            $products[$ids[$i]][1] = $result[$ids[$i]];
+        }
+        $str = '';
+        foreach ($products as $val) {
+            $str .= $val[1].' x '.$val[0].'|';
+        }
+        $str = substr($str, 0, -1);
+        return $str;
+    }
 }

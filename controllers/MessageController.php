@@ -12,11 +12,6 @@ require_once 'libs/page_message_class.php';
 
 class MessageController extends BaseController
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     protected function getContent()
     {
         $pm = new PageMessage();
