@@ -37,7 +37,7 @@ abstract class CoreController
     protected function getRequest($name = false)
     {
         if(!$name) return $this->request;
-        if(!$this->request[$name]) return false;
+        if(!isset($this->request[$name])) return false;
         return $this->request[$name];
     }
 
