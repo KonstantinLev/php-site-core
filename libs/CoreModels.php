@@ -171,6 +171,28 @@ abstract class CoreModels
         return $this->isExistsFV('id', $id);
     }
 
+    public function search($q, $fields)
+    {
+        if (count($fields) == 0) return false;
+        $q = trim($q);
+        if ($q == '') return false;
+        $q = preg_replace('/\s+/', ' ', $q);
+        $words = explode(' ', $q);
+        $logic = ' AND ';
+        $where = '';
+        $params = [];
+        foreach($words as $key => $val){
+            if (isset($words[$key - 1])) $where .= $logic;
+            for ($i = 0; $i < count($fields); $i++){
+                $where .= '`'.$fields[$i].'` LIKE '.$this->config->sym_query;
+                $params[] = "%$val%";
+                if (($i + 1) != count($fields)) $where .= ' OR ';
+            }
+        }
+        $query = 'select * from `'.$this->table_name."` WHERE $where";
+        return $this->db->select($query, $params);
+    }
+
     protected function isExistsFV($field, $value)
     {
         $result = $this->getAllOnField(array($field => $value));

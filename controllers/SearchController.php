@@ -18,8 +18,9 @@ class SearchController extends BaseController
         $this->meta_desc = 'Поиск'.$q.'.';
         $this->meta_key = preg_replace("/\s+/i", ', ', mb_strtolower($q));
 
-
-        $this->template->set('name', $_SESSION['name']);
+        //$this->template->set('name', $_SESSION['name']);
+        $this->template->set('q', $q);
+        $this->template->set('products', $this->product->search($q));
         return 'search';
     }
 }

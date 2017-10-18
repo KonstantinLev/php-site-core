@@ -103,6 +103,11 @@ class Product extends BaseModels
         return $this->transform($this->db->selectRow($query, array($id)));
     }
 
+    public function search($q)
+    {
+        return $this->transform(parent::search($q, ['title', 'articul', 'short_desc']));
+    }
+
     private function checkSortUp($sort, $up)
     {
         return ((($sort === 'title') || ($sort === 'price')) && (($up ==='1') || ($up === '0')));
