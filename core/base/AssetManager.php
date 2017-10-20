@@ -12,7 +12,7 @@ use Meow;
 
 class AssetManager extends BaseApp
 {
-    private $assets = array();
+    public $assets = array();
 
     private function addAsset($link, $where = 'head', $asset = 'script', $type = 'url'){
         //TODO доделать
