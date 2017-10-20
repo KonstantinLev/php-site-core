@@ -43,6 +43,7 @@ $config = [
       'img' => 'files/img/',
       'bower_asset' => 'vendor/bower-asset/',
     ],
+    'assets' => require(__DIR__ . '/assets.php'),
     'maxName' => 255,
     'maxTitle' => 255,
     'maxText' => 66535
