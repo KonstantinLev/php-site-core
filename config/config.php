@@ -33,7 +33,9 @@ class Config
 $config = [
     'db' => require(__DIR__ . '/db.php'),
     'basePath' => dirname(__DIR__),
-    //'assets' => require __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'shop-lite'.DIRECTORY_SEPARATOR.'assets' . DIRECTORY_SEPARATOR . 'config.php',
+    'baseControllersPath' => '@app/controllers',
+    'baseViewsPath' => '@app/views',
+    'layout' => '@app/views/layouts/main',
     'siteName' => 'php-site-core',
     'adminName' => 'Konstantin',
     'adminEmail' => 'x-stels@bk.ru',

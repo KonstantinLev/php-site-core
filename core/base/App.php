@@ -23,6 +23,10 @@ class App extends BaseApp
     public $request;
     public $response;
     public $router;
+    /**
+     * @var AssetManager
+     */
+    public $assetM;
     public $charset = 'UTF-8';
 
     public function __construct($config = [])
@@ -40,6 +44,7 @@ class App extends BaseApp
 //        $response->send();
 //        return $response->exitStatus;
         $this->db = new Connection(Meow::$app->_config['db']);
+        $this->assetM = new AssetManager(isset($this->_config['assets']) ? $this->_config['assets'] : []);
 //        $this->request = new Request();
 //        $this->router = new Router(isset($this->_config['routing']) ? $this->_config['routing'] : []);
 //        Meow::setAlias('@web', $this->request->baseUrl);
