@@ -31,6 +31,7 @@ abstract class Controller extends BaseApp
     public function __construct()
     {
         $config = Meow::$app->_config;
+        //TODO изменить пути
         $this->layout = $config['layout'];
         $this->basePath = $config['basePath'];
         $this->viewsPath = $config['baseViewsPath'];

@@ -31,6 +31,7 @@ class App extends BaseApp
 
     public function __construct($config = [])
     {
+        //TODO обработать исключение
         Meow::$app = $this;
         $this->preInit($config);
         parent::__construct($config);
@@ -43,10 +44,15 @@ class App extends BaseApp
 //        $response = $this->_router->route();
 //        $response->send();
 //        return $response->exitStatus;
-        $this->db = new Connection(Meow::$app->_config['db']);
+        $this->router = new Router(isset($this->_config['routing']) ? $this->_config['routing'] : []);
+        //TODO обработать метод
+        $this->router->route();
+        $this->db = new Connection(isset($this->_config['db']) ? $this->_config['db'] : []);
+        //if (isset($this->_config['db'])){
+            //unset($this->_config['db']);
+        //}
         $this->assetM = new AssetManager(isset($this->_config['assets']) ? $this->_config['assets'] : []);
 //        $this->request = new Request();
-//        $this->router = new Router(isset($this->_config['routing']) ? $this->_config['routing'] : []);
 //        Meow::setAlias('@web', $this->request->baseUrl);
 //        Meow::setAlias('@webroot', dirname($this->request->scriptFile));
 //        Meow::setAlias('@meow', MEOW_PATH);
@@ -75,8 +81,8 @@ class App extends BaseApp
         } else {
             throw new \Exception('Missed required basePath in configuration');
         }
-        if (!isset($config['layout'])) {
-            $this->_config['layout'] = '@app/views/layouts/main';
+        if (!isset($config['routing']['layout'])) {
+            $this->_config['routing']['layout'] = '@app/views/layouts/index';
         }
     }
 }
