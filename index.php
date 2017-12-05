@@ -11,5 +11,3 @@ require(__DIR__ . DIRECTORY_SEPARATOR . 'core' . DIRECTORY_SEPARATOR . 'Meow.php
 $config = require(__DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'config.php');
 
 (new \core\base\App($config))->run();
-
-var_dump(Meow::$app->getDb()->createCommand('select * from `orders`')->queryAll());

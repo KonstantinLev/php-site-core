@@ -20,7 +20,15 @@ class App extends BaseApp
      */
     public $db;
     public $basePath;
+
+    /**
+     * @var Request
+     */
     public $request;
+
+    /**
+     * @var Response
+     */
     public $response;
     public $router;
     /**
@@ -40,18 +48,19 @@ class App extends BaseApp
     public function run()
     {
 //        static::$instance = $this;
-//        $this->_response = new Response();
+        $this->response = new Response();
 //        $response = $this->_router->route();
 //        $response->send();
 //        return $response->exitStatus;
-        $this->router = new Router(isset($this->_config['routing']) ? $this->_config['routing'] : []);
+        $this->request = new Request();
         //TODO обработать метод
-        $this->router->route();
         $this->db = new Connection(isset($this->_config['db']) ? $this->_config['db'] : []);
         //if (isset($this->_config['db'])){
-            //unset($this->_config['db']);
+        //unset($this->_config['db']);
         //}
         $this->assetM = new AssetManager(isset($this->_config['assets']) ? $this->_config['assets'] : []);
+        $this->router = new Router(isset($this->_config['routing']) ? $this->_config['routing'] : []);
+        $this->router->route();
 //        $this->request = new Request();
 //        Meow::setAlias('@web', $this->request->baseUrl);
 //        Meow::setAlias('@webroot', dirname($this->request->scriptFile));
@@ -66,6 +75,13 @@ class App extends BaseApp
     public function getBasePath()
     {
         return $this->basePath;
+    }
+
+    /**
+     * @return Response
+     */
+    public function getResponse(){
+        return $this->response;
     }
 
     private function setBasePath($path)

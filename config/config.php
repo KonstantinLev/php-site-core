@@ -33,12 +33,12 @@ class Config
 $config = [
     'db' => require(__DIR__ . '/db.php'),
     'basePath' => dirname(__DIR__),
-    'baseControllersPath' => '@app/controllers',
     'routing' => [
         'basePath' => 'index/index',
         'baseViewsPath' => '@app/views',
         'layout' => '@app/views/layouts/index',
         'controllersNamespace' => 'app\controllers',
+        'baseControllersPath' => '@app/controllers'
     ],
     'siteName' => 'php-site-core',
     'adminName' => 'Konstantin',
